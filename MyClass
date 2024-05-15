@@ -1,12 +1,3 @@
-//Use this file to store your work to demonstrate your understanding of operators
-//Make sure your work is different from the instructors examples or your peers
-
-//Based on the HelloWorld File, turn this into a class.
-
-//Write a console program with a program class, and Main Function
-//Add another class with any name, add variables 
-//Using the new keyword create several objects
-//Console writeline the Objects variables
 using System;
 
 public class Program
@@ -16,27 +7,27 @@ public class Program
 
     public void Main()
     {
-        PresidentsHealth = new Health();
+        PresidentsHealth = new Health();// this is (1) this is saying that the word PresidentsHealth is getting referred to (2 at line 21)
         Bullet = new Damage();
 
-        PresidentsHealth.PresidentsHealth -= Bullet.Bullet;
+      PresidentsHealth.PrHealth -= Bullet.BuDamage; // Decrease the health
         
         Console.WriteLine("Hello Wor... IM ALIVE");
         Console.WriteLine("GET DOWN MR PRESIDENT!!!");
         Console.WriteLine("BANG!!!");
-        Console.WriteLine("{PresidentsHealth.Name} WARNING HEALTH HALF WAY!!! {PresidentsHealth.PresidentsHealth}.");
+       	Console.WriteLine(PresidentsHealth.Name + " WARNING HEALTH HALF WAY!!! " + PresidentsHealth.PrHealth); //remember PresidentHealth is referring to (1 at line 10)
     }
 
-    public class Health
+    public class Health // this is (2) where I can specify what I want from here, like if I want PrHealth, I just put.PrHealth after PresidentsHealth like this PresidentsHealth.PrHealth
     {
         // This is the health of the president
-        public int PresidentsHealth = 50;
+        public int PrHealth = 50;
         public string Name = "President";
     }
 
     public class Damage
     {
         // This is the damage to the president's health
-        public int Bullet = 25;
+        public int BuDamage = 25;
     }
 }
