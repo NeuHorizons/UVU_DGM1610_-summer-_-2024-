@@ -1,0 +1,65 @@
+
+					
+using System;
+
+public class Program
+{
+    public Hero heroOne;
+    public Hero heroTwo;
+    public Hero heroThree;
+	// i added a new class so i have to meantion it bellow
+    public Weapon sword;
+
+    public void Main()
+    {
+        heroOne = new Hero();
+        heroTwo = new Hero();
+        heroThree = new Hero();
+        sword = new Weapon();
+
+        heroOne.health = 2;
+        heroOne.powerLevel = 5;
+        heroOne.defence = 4;
+
+        heroTwo.health = 3;
+        heroTwo.powerLevel = 1;
+        heroTwo.defence = 2;
+
+        heroThree.health = 10;
+        heroThree.powerLevel = 5;
+        heroThree.defence = 20;
+        heroThree.sword = "Xcalibur";
+		
+ 		Console.WriteLine("Hero One");
+		
+        Console.WriteLine("Hero Health:" + heroOne.health);
+        Console.WriteLine("Hero Power:" + heroOne.powerLevel);
+        Console.WriteLine("Hero defence:" + heroOne.defence);
+		
+		Console.WriteLine("Hero Two");
+		
+        Console.WriteLine("Hero Health:" + heroTwo.health);
+        Console.WriteLine("Hero Power:" + heroTwo.powerLevel);
+        Console.WriteLine("Hero defence:" + heroTwo.defence);
+		
+		Console.WriteLine("Hero Three");
+		
+        Console.WriteLine("Hero Health:" + heroThree.health);
+        Console.WriteLine("Hero Power:" + heroThree.powerLevel);
+        Console.WriteLine("Hero defence:" + heroThree.defence);
+        Console.WriteLine("Hero weapon:" + heroThree.sword);
+    }
+}
+
+public class Hero
+{
+    public int health;
+    public int powerLevel;
+    public int defence;
+    public string sword; // Make sure to use lower case s for sting not upercase S or it will mess up the whole thing
+}
+
+public class Weapon
+{
+    // make sure to tell the program about the weapon class
+}
