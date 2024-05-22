@@ -1,0 +1,45 @@
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Define the objects and their respective probabilities
+        var objects = new[]
+        {
+            new { Name = "Object1", Probability = 0.5 },    // 50% chance
+            new { Name = "Object2", Probability = 0.2 },    // 20% chance
+            new { Name = "Object3", Probability = 0.1 },    // 10% chance
+            new { Name = "Object4", Probability = 0.2 }     // 20% chance
+        };
+
+        // Generate a random number between 0 and 1
+        Random random = new Random();
+        double randomNumber = random.NextDouble();
+
+        // Initialize variables to track the selected object and cumulative probability
+        string selectedObject = null;
+        double cumulativeProbability = 0.0;
+        bool objectSelected = false;
+
+        // Iterate over the objects and their probabilities
+        foreach (var obj in objects)
+        {
+            cumulativeProbability += obj.Probability;
+            if (randomNumber <= cumulativeProbability)
+            {
+                selectedObject = obj.Name;
+                objectSelected = true;
+                break;
+            }
+        }
+
+        // If no object was selected due to rounding issues, select the last object
+        if (!objectSelected)
+        {
+            selectedObject = objects[objects.Length - 1].Name;
+        }
+
+        Console.WriteLine("Selected Object: " + selectedObject);
+    }
+}
