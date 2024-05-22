@@ -3,7 +3,7 @@ using System;
 // Enum representing the major tarot cards
 public enum MajorTarotCards
 {
-    TheFool,
+    TheFool,// it makes a random selection from the 22 cards that are here. also it assines all of the cards a number starting at the fool as 1
     TheMagician,
     TheHighPriestess,
     TheEmpress,
