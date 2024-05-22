@@ -3,7 +3,7 @@ using System;
 // Enum representing the major tarot cards
 public enum MajorTarotCards
 {
-    TheFool,// it makes a random selection from the 22 cards that are here. also it assines all of the cards a number starting at the fool as 1
+    TheFool,//Each tarot card is listed as a member of the enum. By default, the first value (TheFool) is assigned the integer value 0, the second value (TheMagician) is assigned 1, and so on, up to TheWorld, which is assigned 21.
     TheMagician,
     TheHighPriestess,
     TheEmpress,
@@ -36,14 +36,17 @@ public class Program
         // Creating a random number generator
         Random random = new Random();
 
-        // Generating a random index within the range of the enum values
+        // Enum.GetValues Method: Enum.GetValues(typeof(MajorTarotCards)) returns an array of all values in the MajorTarotCards enum. The typeof keyword is used to get the type of the enum.
+        //Length: Enum.GetValues(typeof(MajorTarotCards)).Length gets the length of this array, which is 22 in this case (because there are 22 tarot cards).
+        //Random Number Generation: random.Next(22) generates a random integer between 0 (inclusive) and 22 (exclusive). This means it will generate a number between 0 and 21, corresponding to the enum values of the tarot cards.
         int randomIndex = random.Next(Enum.GetValues(typeof(MajorTarotCards)).Length);
 
-        // Converting the random index to the corresponding enum value
+        // Type Casting: (MajorTarotCards)randomIndex casts the integer randomIndex to the corresponding MajorTarotCards enum value. For example, if randomIndex is 3, it will be cast to MajorTarotCards.TheEmpress.
         MajorTarotCards selectedCard = (MajorTarotCards)randomIndex;
 
-        // Printing the selected card's name and description
+        //String Formatting: String.Format("Randomly selected card is {0}.", selectedCard) creates a formatted string where {0} is replaced by the selectedCard value (e.g., "TheEmpress").
         Console.WriteLine(String.Format("Randomly selected card is {0}.", selectedCard));
+        //Method Call: DescribeCard(selectedCard) calls the DescribeCard method, passing the randomly selected card as an argument.
         DescribeCard(selectedCard); // Calling a method to describe the selected card
     }
 
