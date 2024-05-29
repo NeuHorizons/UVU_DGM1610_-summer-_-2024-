@@ -1,0 +1,58 @@
+
+public class GuessingGame
+{
+    
+    public static void Main()
+    {
+        Random random = new Random(); // makes a random thats allowed for it to be used latter to genorate a random thing
+        int targetNumber = random.Next(1, 11); // choose a number between 1 and 10 for you to guess
+        int guess = 0; // This will store your guesses
+        int attempts = 0; // this count's how many times you try
+        int invalidAttempts = 0; //This keep's track of how many times you give weird inputs
+
+        Console.WriteLine("I've picked a number between 1 and 10."); // prints your response and such
+        Console.WriteLine("Can you guess what it is?");
+
+        // Here's where the loop starts, it will keep going until you guess right
+        while (guess != targetNumber)
+        {
+            Console.Write("Enter your guess: "); // What's your guess?
+            string userInput = Console.ReadLine(); // reads the response
+
+            // the progam try's to understand what you typed
+            if (int.TryParse(userInput, out guess)) // If it's a number
+            {
+                attempts++; // We'll count that as an attempt
+
+                // Let's see if your guess is too high, too low, or just right
+                if (guess < targetNumber)
+                {
+                    Console.WriteLine("Too low! Try again."); 
+                }
+                else if (guess > targetNumber)
+                {
+                    Console.WriteLine("Too high! Try again."); 
+                }
+                else
+                {
+                    Console.WriteLine("Congratulations! You guessed it."); 
+                    Console.WriteLine("It took you {0} attempts.", attempts); // This line of code prints the number of attempts the user made to guess the correct number.
+                }
+            }
+            else // If what you typed wasn't a number
+            {
+                invalidAttempts++; // it adds how many times you failed
+
+                // If you keep giving  strange inputs, it will check if you're alright
+                if (invalidAttempts >= 5)
+                {
+                    Console.WriteLine("Are you ok? Didn't I say put in a whole number?"); 
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number between 1 and 10."); 
+                }
+            }
+        }
+    }
+}
