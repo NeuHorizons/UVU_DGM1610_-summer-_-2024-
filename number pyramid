@@ -1,38 +1,46 @@
-using System;
+using System; 
 
 public class Program
 {
     public static void Main()
     {
-        // Prompt the user to enter the number of rows for the pyramid
+        // Display a message asking the user to enter the number of rows for the pyramid.
         Console.WriteLine("Enter the number of rows for the pyramid (positive integer):");
-        int numRows; // Variable to store the number of rows
+        int numRows; // Declare an integer variable named numRows to store the user's input.
 
-        // Validate user input to ensure it's a positive integer
+        // This while loop continues to prompt the user for input until a valid positive integer is entered.
+        // int.TryParse attempts to convert the user's input into an integer. If the conversion fails, it returns false.
+        // The loop also checks if the input is greater than 0 to ensure it's a positive integer.
         while (!int.TryParse(Console.ReadLine(), out numRows) || numRows <= 0)
         {
-            // If input is invalid, ask the user to enter a positive integer again
+            // If the user's input is invalid (not a positive integer), display an error message and prompt them again.
             Console.WriteLine("Invalid input. Please enter a positive integer:");
         }
 
-        // Call the method to print the number pyramid
+        // Call the PrintNumberPyramid method, passing the user's valid input as an argument.
+        // This will generate and display the number pyramid.
         PrintNumberPyramid(numRows);
     }
 
-    // Method to generate and print the number pyramid
+    // This method generates and prints a number pyramid based on the specified number of rows.
+    // The number of rows is provided as an argument to the method.
     public static void PrintNumberPyramid(int numRows)
     {
-        // Loop through each row
+        // The outer loop iterates over each row of the pyramid.
+        // It starts from 1 and goes up to the number of rows specified by the user.
         for (int i = 1; i <= numRows; i++)
         {
-            // Loop through each column in the current row
+            // The inner loop iterates over each column in the current row.
+            // For each row i, it prints the row number i, i times.
             for (int j = 1; j <= i; j++)
             {
-                // Print the current row number
+                // Print the current row number i without moving to the next line.
+                // This means all the numbers in the current row will be printed on the same line.
                 Console.Write(i);
             }
 
-            // Move to the next line after each row
+            // After printing all the numbers in the current row, move to the next line.
+            // This prepares the console to print the next row of the pyramid.
             Console.WriteLine();
         }
     }
