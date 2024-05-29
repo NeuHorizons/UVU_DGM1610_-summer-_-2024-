@@ -1,0 +1,47 @@
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Prompt the user for the number of rows for the pyramid
+        Console.WriteLine("Enter the number of rows for the pyramid (positive integer):");
+        int numRows;
+
+        // Validate the user input to ensure it is a positive integer
+        while (!int.TryParse(Console.ReadLine(), out numRows) || numRows <= 0)
+        {
+            Console.WriteLine("Invalid input. Please enter a positive integer:");
+        }
+
+        // Call the method to generate and print the number pyramid
+        PrintNumberPyramid(numRows);
+    }
+
+    /// <summary>
+    /// Generates and prints a number pyramid pattern based on the specified number of rows.
+    /// Each row contains the same number of repeated values corresponding to the row number.
+    /// </summary>
+    /// <param name="numRows">The number of rows for the pyramid</param>
+    public static void PrintNumberPyramid(int numRows)
+    {
+        // Outer loop iterates over each row
+        for (int i = 1; i <= numRows; i++)
+        {
+            // Inner loop for spaces before the numbers in each row
+            for (int j = 1; j <= numRows - i; j++)
+            {
+                Console.Write(" ");
+            }
+
+            // Inner loop for printing the repeated numbers in each row
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write(i + " ");
+            }
+
+            // Move to the next line after printing each row
+            Console.WriteLine();
+        }
+    }
+}
