@@ -1,0 +1,39 @@
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Prompt the user to enter the number of rows for the pyramid
+        Console.WriteLine("Enter the number of rows for the pyramid (positive integer):");
+        int numRows; // Variable to store the number of rows
+
+        // Validate user input to ensure it's a positive integer
+        while (!int.TryParse(Console.ReadLine(), out numRows) || numRows <= 0)
+        {
+            // If input is invalid, ask the user to enter a positive integer again
+            Console.WriteLine("Invalid input. Please enter a positive integer:");
+        }
+
+        // Call the method to print the number pyramid
+        PrintNumberPyramid(numRows);
+    }
+
+    // Method to generate and print the number pyramid
+    public static void PrintNumberPyramid(int numRows)
+    {
+        // Loop through each row
+        for (int i = 1; i <= numRows; i++)
+        {
+            // Loop through each column in the current row
+            for (int j = 1; j <= i; j++)
+            {
+                // Print the current row number
+                Console.Write(i);
+            }
+
+            // Move to the next line after each row
+            Console.WriteLine();
+        }
+    }
+}
