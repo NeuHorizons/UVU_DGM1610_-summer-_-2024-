@@ -1,0 +1,96 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// This attribute ensures that the GameObject this script is attached to also has a CharacterController component.
+[RequireComponent(typeof(CharacterController))]
+public class FPSController : MonoBehaviour
+{
+    // Public variables that can be set in the Unity Editor
+    public Camera playerCamera; // Reference to the player's camera
+    public float walkSpeed = 6f; // Walking speed of the player
+    public float runSpeed = 12f; // Running speed of the player
+    public float jumpPower = 7f; // The force applied when the player jumps
+    public float gravity = 10f; // Gravity force applied when the player is in the air
+
+    public float lookSpeed = 2f; // Speed of camera rotation
+    public float lookXLimit = 45f; // Limit of how much the player can look up or down
+
+    // Private variables
+    Vector3 moveDirection = Vector3.zero; // Direction in which the player is moving
+    float rotationX = 0; // X-axis rotation for looking up and down
+
+    public bool canMove = true; // Flag to enable or disable player movement
+
+    // Reference to the CharacterController component
+    CharacterController characterController;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Get the CharacterController component attached to the GameObject
+        characterController = GetComponent<CharacterController>();
+        // Lock the cursor to the center of the screen and make it invisible
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        #region Handles Movment
+        // Calculate the forward and right vectors relative to the player's orientation
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+
+        // Check if the player is holding the Left Shift key to run
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        // Determine the current speed based on whether the player is running or walking and moving forward or backward
+        float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
+        // Determine the current speed based on whether the player is running or walking and moving left or right
+        float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
+        // Store the current vertical movement direction
+        float movementDirectionY = moveDirection.y;
+        // Calculate the new movement direction
+        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+        #endregion
+
+        #region Handles Jumping
+        // Check if the player pressed the Jump button, can move, and is on the ground
+        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        {
+            moveDirection.y = jumpPower; // Apply jump power
+        }
+        else
+        {
+            moveDirection.y = movementDirectionY; // Maintain current vertical movement direction
+        }
+
+        // Apply gravity when the player is not on the ground
+        if (!characterController.isGrounded)
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+
+        #endregion
+
+        #region Handles Rotation
+        // Move the player based on the calculated moveDirection
+        characterController.Move(moveDirection * Time.deltaTime);
+
+        if (canMove)
+        {
+            // Rotate the camera up and down
+            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+            // Rotate the player left and right
+            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+
+        #endregion
+    }
+}
+// In C#, #region and #endregion are preprocessor directives used to define a block of code that can be expanded or collapsed in the code editor, such as Visual Studio or Visual Studio Code.
+// These directives do not affect the execution of the code and are used purely for organizational purposes, making it easier to navigate and manage large code files.
