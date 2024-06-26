@@ -1,0 +1,184 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DetectCollision : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Initialization code can be added here if needed
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Code to update each frame can be added here if needed
+    }
+
+    // This method is called when the collider attached to the GameObject this script is attached to
+    // enters a trigger collider
+    private void OnTriggerEnter(Collider other)
+    {
+        // Destroy the GameObject this script is attached to
+        Destroy(gameObject);
+
+        // Destroy the other GameObject that triggered the collider
+        Destroy(other.gameObject);
+    }
+}
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpawnManager : MonoBehaviour
+{
+    // Public variables that can be set in the Unity Editor
+    public GameObject[] animalPrefabs; // Array to store animal prefab GameObjects
+    public float startDelay = 2f; // Delay before the first animal spawns
+    public float spawnInterval = 1.5f; // Interval between animal spawns
+
+    // Private variables
+    private float spawnRangeX = 20f; // Range for random X position for spawning
+    private float spawnPosZ = 20f; // Fixed Z position for spawning
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Call the SpawnRandomAnimal method repeatedly after a delay
+        InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Code to update each frame can be added here if needed
+    }
+
+    // Method to spawn a random animal at a random X position
+    void SpawnRandomAnimal()
+    {
+        // Generate a random index to select an animal prefab
+        int animalIndex = Random.Range(0, animalPrefabs.Length);
+
+        // Generate a random X position within the specified range
+        Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
+
+        // Instantiate the selected animal prefab at the generated position with its original rotation
+        Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
+    }
+}
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Projectile : MonoBehaviour
+{
+    public float topBound = 30f; // Upper boundary for the projectile's position on the Z axis
+    public float lowerBound = -10f; // Lower boundary for the projectile's position on the Z axis
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Initialization code can be added here if needed
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Check if the projectile has gone beyond the upper boundary
+        if (transform.position.z > topBound)
+        {
+            // Destroy the projectile GameObject
+            Destroy(gameObject);
+        }
+        // Check if the projectile has gone below the lower boundary
+        else if (transform.position.z < lowerBound)
+        {
+            // Destroy the projectile GameObject
+            Destroy(gameObject);
+        }
+    }
+}
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class MoveForward : MonoBehaviour
+{
+    public float speed = 50f; // Speed at which the GameObject moves forward
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Initialization code can be added here if needed
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Move the GameObject forward at a constant speed
+        // Vector3.forward represents the forward direction relative to the GameObject
+        // Time.deltaTime ensures the movement is frame rate independent
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+}
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class PlayerControlor : MonoBehaviour
+{
+    // Public variables that can be set in the Unity Editor
+    public float HorizontalInput; // Variable to store horizontal input (A/D or Left/Right arrow keys)
+    public float speed = 10.0f; // Movement speed of the player
+    public float xRange = 10; // Limit for the player's movement on the x-axis
+    public GameObject projectilePrefab; // Prefab for the projectile to be instantiated
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Initialization code can be added here if needed
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Prevent the player from moving beyond the left boundary
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+
+        // Prevent the player from moving beyond the right boundary
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
+
+        // Get the player's horizontal input (left/right movement)
+        HorizontalInput = Input.GetAxis("Horizontal");
+
+        // Move the player left or right based on the horizontal input
+        // Vector3.right represents the right direction relative to the player
+        // Time.deltaTime ensures the movement is frame rate independent
+        transform.Translate(Vector3.right * HorizontalInput * Time.deltaTime * speed);
+
+        // Check if the space key is pressed to shoot a projectile
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Instantiate a projectile at the player's position with the projectile's rotation
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
+    }
+}
