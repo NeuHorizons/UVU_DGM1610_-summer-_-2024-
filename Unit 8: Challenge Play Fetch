@@ -1,0 +1,149 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DestroyOutOfBoundsX : MonoBehaviour
+{
+    private float leftLimit = -30f; // The left boundary limit for the x-axis
+    private float bottomLimit = -5f; // The bottom boundary limit for the y-axis
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Destroy game objects if their x position is less than the left limit
+        if (transform.position.x < leftLimit)
+        {
+            Destroy(gameObject);
+        }
+        // Destroy game objects if their y position is less than the bottom limit
+        else if (transform.position.y < bottomLimit)
+        {
+            Destroy(gameObject);
+        }
+    }
+}
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DetectCollisionsX : MonoBehaviour
+{
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
+}
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MoveForwardX : MonoBehaviour
+{
+    public float speed;
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+}
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MoveForwardX : MonoBehaviour
+{
+    public float speed;
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+}
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControllerX : MonoBehaviour
+{
+    public GameObject dogPrefab; // Prefab for the dog to be instantiated
+    public float spawnCooldown = 2.0f; // Time in seconds between allowed spawns
+
+    private float lastSpawnTime = -Mathf.Infinity; // Time when the last dog was spawned
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Check if the spacebar is pressed and enough time has passed since the last spawn
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time - lastSpawnTime >= spawnCooldown)
+        {
+            // Spawn the dog prefab at the player's position with the dog's rotation
+            Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
+            // Update the last spawn time to the current time
+            lastSpawnTime = Time.time;
+        }
+    }
+}
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpawnManagerX : MonoBehaviour
+{
+    public GameObject[] ballPrefabs; // Array to store ball prefab GameObjects
+
+    private float spawnLimitXLeft = -22; // Left boundary for random X position for spawning
+    private float spawnLimitXRight = 7; // Right boundary for random X position for spawning
+    private float spawnPosY = 30; // Fixed Y position for spawning
+
+    private float startDelay = 1.0f; // Initial delay before the first spawn
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Start the spawning coroutine
+        StartCoroutine(SpawnRandomBallWithRandomInterval());
+    }
+
+    // Coroutine to spawn random balls at random intervals
+    private IEnumerator SpawnRandomBallWithRandomInterval()
+    {
+        // Wait for the initial start delay
+        yield return new WaitForSeconds(startDelay);
+
+        while (true)
+        {
+            // Generate a random spawn interval between 3 and 5 seconds
+            float spawnInterval = Random.Range(3.0f, 5.0f);
+
+            // Call the method to spawn a random ball
+            SpawnRandomBall();
+
+            // Wait for the random spawn interval before spawning the next ball
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+    // Method to spawn a random ball at a random X position at the top of the play area
+    private void SpawnRandomBall()
+    {
+        // Generate a random ball index to select a ball prefab
+        int ballIndex = Random.Range(0, ballPrefabs.Length);
+
+        // Generate a random X position within the specified range
+        Vector3 spawnPos = new Vector3(Random.Range(spawnLimitXLeft, spawnLimitXRight), spawnPosY, 0);
+
+        // Instantiate the selected ball prefab at the generated position with its original rotation
+        Instantiate(ballPrefabs[ballIndex], spawnPos, ballPrefabs[ballIndex].transform.rotation);
+    }
+}
