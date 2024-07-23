@@ -10,7 +10,7 @@ public class DestroyOutOfBounds : MonoBehaviour
     void Update()
     {
         // Check if the GameObject's z position is less than the threshold
-        if (transform.position.z > zThreshold)
+        if (transform.position.z < zThreshold)
         {
             // Destroy the GameObject
             Destroy(gameObject);
