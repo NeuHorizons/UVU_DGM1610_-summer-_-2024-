@@ -25,6 +25,7 @@ public class PlayerControler : MonoBehaviour
     // Coroutine reference
     private Coroutine spawnCoroutine;
 
+
     void Update()
     {
         // Get input from Horizontal axis (A/D keys or Left/Right arrow keys)
