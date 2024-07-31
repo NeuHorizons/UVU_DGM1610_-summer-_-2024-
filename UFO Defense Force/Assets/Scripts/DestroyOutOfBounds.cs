@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class DestroyOnCollision : MonoBehaviour
 {
-    // The z-axis threshold for destroying the GameObject
-    public float zThreshold = 40.0f;
+    // The z-axis thresholds for destroying the GameObject
+    public float zUpperThreshold = 40.0f;
+    public float zLowerThreshold = -10.0f;
 
     void Update()
     {
-        // Check if the GameObject's z position is less than the threshold
-        if (transform.position.z > zThreshold)
+        // Check if the GameObject's z position is out of the specified range
+        if (transform.position.z > zUpperThreshold || transform.position.z < zLowerThreshold)
         {
             // Destroy the GameObject
             Destroy(gameObject);
@@ -25,4 +26,6 @@ public class DestroyOnCollision : MonoBehaviour
         // Destroy the GameObject when it collides with another object
         Destroy(gameObject);
     }
+
+
 }
