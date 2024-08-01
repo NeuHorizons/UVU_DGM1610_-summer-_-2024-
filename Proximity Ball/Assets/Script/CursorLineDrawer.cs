@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CursorLineDrawer : MonoBehaviour
@@ -7,10 +5,10 @@ public class CursorLineDrawer : MonoBehaviour
     public GameObject ball; // Assign the ball GameObject in the Inspector
     public LineRenderer lineRenderer; // Assign a LineRenderer in the Inspector
     public float maxDistance = 5f; // Maximum distance at which the line appears
+    public float baseLineWidth = 0.1f; // Base line width before scaling
 
     void Start()
     {
-        // Ensure the LineRenderer is assigned
         if (lineRenderer == null)
         {
             Debug.LogError("LineRenderer not assigned!");
@@ -18,8 +16,6 @@ public class CursorLineDrawer : MonoBehaviour
         }
 
         lineRenderer.positionCount = 2;
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
     }
 
@@ -36,9 +32,10 @@ public class CursorLineDrawer : MonoBehaviour
             lineRenderer.SetPosition(0, ball.transform.position);
             lineRenderer.SetPosition(1, cursorPosition);
 
-            float lineThickness = Mathf.Lerp(0, 0.1f, 1 - (distance / maxDistance));
-            lineRenderer.startWidth = lineThickness;
-            lineRenderer.endWidth = lineThickness;
+            float lineThickness = Mathf.Lerp(0, baseLineWidth, 1 - (distance / maxDistance));
+            float scaledLineThickness = lineThickness * ball.transform.localScale.x; // Adjust line thickness based on ball's scale
+            lineRenderer.startWidth = scaledLineThickness;
+            lineRenderer.endWidth = scaledLineThickness;
         }
         else
         {
