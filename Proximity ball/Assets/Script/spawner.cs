@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnScript : MonoBehaviour
+public class spawner : MonoBehaviour
 {
     public GameObject objectToSpawn; // The object to be spawned
     public float spawnRange = 5f; // Range on the x-axis for random spawning
