@@ -6,10 +6,24 @@ public class spawner : MonoBehaviour
 {
     public GameObject objectToSpawn; // The object to be spawned
     public float spawnRange = 5f; // Range on the x-axis for random spawning
+    public float spawnInterval = 2f; // Interval in seconds between spawns
 
     void Start()
     {
-        SpawnObject();
+        // Start the spawning coroutine
+        StartCoroutine(SpawnObjectRoutine());
+    }
+
+    IEnumerator SpawnObjectRoutine()
+    {
+        while (true)
+        {
+            // Wait for the specified interval
+            yield return new WaitForSeconds(spawnInterval);
+
+            // Spawn the object
+            SpawnObject();
+        }
     }
 
     void SpawnObject()
