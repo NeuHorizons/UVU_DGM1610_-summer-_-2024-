@@ -1,0 +1,5 @@
+Game Summary:
+
+In this game, players control a balloon that moves up and down to avoid obstacles. 
+The obstacles fly towards the player and are randomly spawned at various points. 
+The objective is to navigate the balloon through the incoming obstacles without colliding, providing an engaging and challenging gameplay experience.

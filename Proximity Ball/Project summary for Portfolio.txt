@@ -1,0 +1,5 @@
+Project Summary:
+
+This project involves a ball that interacts dynamically with the cursor. When the cursor approaches the ball, a line extends from the ball to the cursor. If the cursor moves outside a certain radius, the line gradually shortens until it disappears. The line reappears once the cursor comes back within the specified radius.
+
+To enhance the project, spawning mechanics and physics were added. The balls now randomly spawn at the top of the screen and fall like snowflakes, creating a visually appealing and dynamic cosmetic effect.

@@ -1,0 +1,5 @@
+Game Summary:
+
+In this game, the player can move left and right and fire projectiles at oncoming enemies. When an enemy is hit by a projectile, both the enemy and the projectile are destroyed. 
+The player can continue to shoot at newly spawning enemies. If any enemies get past the player, the game ends.
+Additionally, the game features collectible objects that the player can pick up and store, adding an extra layer of gameplay.

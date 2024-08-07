@@ -1,0 +1,5 @@
+Game Summary:
+
+This game features a main menu that allows players to choose their desired difficulty level. Once a difficulty is selected, the game begins with various prefabs spawning at random locations then flying upwards and fall backdown.
+ Players must click on these prefabs to make them explode or pop. Clicking on a prefab will either add or subtract points from the player's score, depending on whether it was a good or bad prefab.
+The game includes a mechanic that ends the game if a good prefab falls bellow a cirtain location. When this happens, a game over screen appears, allowing the player to restart the game with the press of a button.

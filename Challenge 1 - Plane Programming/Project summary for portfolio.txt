@@ -1,0 +1,5 @@
+Game Summary:
+
+In this game, players control a plane that can move up and down to avoid obstacles, similar to the mechanics of Flappy Bird.
+ The objective is to navigate through the obstacles without crashing, providing a simple yet challenging gameplay experience.
+

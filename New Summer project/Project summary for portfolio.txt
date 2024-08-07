@@ -1,0 +1,5 @@
+Game Summary:
+
+This game features a character with advanced movement abilities, including jumping, crouching, running, and wall-running. 
+These enhanced movement options provide a dynamic and fluid gameplay experience, allowing for greater control and versatility in navigating the game environment.
+

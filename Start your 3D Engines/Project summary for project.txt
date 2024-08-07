@@ -1,0 +1,4 @@
+Game Summary:
+
+In this game, players control a vehicle that drives forward and can move left or right to avoid obstacles.
+When the vehicle collides with smaller objects, these objects either move out of the way or fly away upon impact, adding a dynamic and interactive element to the gameplay.

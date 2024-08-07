@@ -1,0 +1,5 @@
+Game Summary:
+
+In this game, players control a character that can move left and right and fire projectiles at approaching enemies.
+The projectiles collide with the enemies, eliminating them as they advance towards the player.
+The goal is to prevent the enemies from reaching the player, offering an engaging and action-packed experience.

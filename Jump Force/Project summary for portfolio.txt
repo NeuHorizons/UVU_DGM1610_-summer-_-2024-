@@ -1,0 +1,6 @@
+Game Summary:
+
+In this game, players control a character that moves and jumps over obstacles. 
+Successfully jumping over an obstacle triggers an animation. 
+If the character runs into an obstacle, they crash, activating an explosion effect and a falling animation, followed by a game over UI. 
+Additionally, the background moves to create the illusion of forward movement, enhancing the overall gameplay experience.

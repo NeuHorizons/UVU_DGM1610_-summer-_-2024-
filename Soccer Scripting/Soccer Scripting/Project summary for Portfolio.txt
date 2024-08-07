@@ -1,0 +1,4 @@
+Game Summary:
+
+In this game, players control a ball with the objective of knocking other balls into a goal to gain points.
+The game features a power-up that, when collected, grants the player increased knockback power for a limited time, allowing for more strategic and dynamic gameplay.

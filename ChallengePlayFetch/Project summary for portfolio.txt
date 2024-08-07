@@ -1,0 +1,1 @@
+this game allows you to send a dog fowrward to catch a ball and it has a bit of code so you cant just constanly spawn a dog.
