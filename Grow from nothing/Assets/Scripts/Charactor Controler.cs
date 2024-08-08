@@ -7,13 +7,10 @@ public class PlayerGrowth : MonoBehaviour
 {
     public bool gameOver = false;
 
-
     public GameObject deathScreen; // Reference to the Death screen UI element
 
     public float moveSpeed = 5f;
     public float growthFactor = 0.1f; // Amount by which the player grows each time
-
-
 
     private Rigidbody2D rb2d;
     private Vector2 movement;
@@ -53,14 +50,14 @@ public class PlayerGrowth : MonoBehaviour
             // Optionally, destroy the other circle
             Destroy(other.gameObject);
         }
-
-        else if (other.CompareTag("Enemy"))
+        else if (other.CompareTag("Enemy") && transform.localScale.x < 1.5f && transform.localScale.y < 1.5f)
         {
             gameOver = true;
             Debug.Log("Game Over!");
             ShowDeathScreen();
         }
     }
+
     void ShowDeathScreen()
     {
         // Activate the Death screen UI element

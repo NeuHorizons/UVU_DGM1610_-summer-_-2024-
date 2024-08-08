@@ -23,8 +23,16 @@ public class Collider : MonoBehaviour
         // Check if the collided object has the specified tag
         if (collision.gameObject.CompareTag(targetTag))
         {
-            Debug.Log("Trigger with target tag");
-            Destroy(collision.gameObject); // Destroy the collided object if it has the correct tag
+            Vector3 targetSize = collision.gameObject.transform.localScale;
+            if (targetSize.x <= 1.5f && targetSize.y <= 1.5f && targetSize.z <= 1.5f)
+            {
+                Debug.Log("Trigger with target tag");
+                Destroy(collision.gameObject); // Destroy the collided object if it has the correct tag and size is <= 1.5
+            }
+            else
+            {
+                Debug.Log("Target size is above 1.5, not destroying");
+            }
         }
     }
 }
